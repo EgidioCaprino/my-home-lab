@@ -49,6 +49,17 @@ spec:
                 secretKeyRef:
                   name: secret
                   key: nextcloud-admin-password
+            - name: POSTGRES_DB
+              value: nextcloud
+            - name: POSTGRES_USER
+              value: nextcloud
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: postgres-nextcloud-password
+            - name: POSTGRES_HOST
+              value: postgres-service
           volumeMounts:
             - name: data
               mountPath: /var/www/html
