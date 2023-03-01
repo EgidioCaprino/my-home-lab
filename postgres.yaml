@@ -23,6 +23,16 @@ spec:
     requests:
       storage: 2Gi
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config-map
+data:
+  initdb-nextcloud.sh: |
+    #!/usr/bin/env bash
+    /usr/bin/psql --command "CREATE ROLE nextcloud LOGIN PASSWORD '${NEXTCLOUD_PASSWORD}';"
+    /usr/bin/psql --command "CREATE DATABASE nextcloud OWNER nextcloud;"
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -47,10 +57,21 @@ spec:
                 secretKeyRef:
                   name: secret
                   key: postgres-postgres-password
+            - name: NEXTCLOUD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: postgres-nextcloud-password
           volumeMounts:
             - name: data
               mountPath: /var/lib/postgresql/data
+            - name: initdb-nextcloud-sh
+              subPath: initdb-nextcloud.sh
+              mountPath: /docker-entrypoint-initdb.d/nextcloud.sh
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: postgres-data-volume-claim
+        - name: initdb-nextcloud-sh
+          configMap:
+            name: postgres-config-map
