@@ -7,20 +7,20 @@ metadata:
     kubernetes.io/ingress.class: "traefik"
 spec:
   tls:
-    - hosts:
-        - nextcloud.egidiocaprino.com
-      secretName: nextcloud-certificate
+  - hosts:
+    - nextcloud.egidiocaprino.com
+    secretName: nextcloud-certificate
   rules:
-    - host: nextcloud.egidiocaprino.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: nextcloud-service
-                port:
-                  number: 80
+  - host: nextcloud.egidiocaprino.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nextcloud-service
+            port:
+              number: 80
 ---
 apiVersion: v1
 kind: Service
@@ -31,9 +31,9 @@ spec:
   selector:
     app: nextcloud
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
+  - protocol: TCP
+    port: 80
+    targetPort: 80
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -44,10 +44,11 @@ metadata:
     app: nextcloud
 spec:
   accessModes:
-    - ReadWriteOnce
+  - ReadWriteOnce
   resources:
     requests:
       storage: 10Gi
+  storageClassName: longhorn
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -64,35 +65,35 @@ spec:
         app: nextcloud
     spec:
       containers:
-        - name: nextcloud
-          image: nextcloud:25.0.4
-          ports:
-            - containerPort: 80
-          env:
-            - name: NEXTCLOUD_ADMIN_USER
-              value: admin
-            - name: NEXTCLOUD_ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: secret
-                  key: nextcloud-admin-password
-            - name: POSTGRES_DB
-              value: postgres
-            - name: POSTGRES_USER
-              value: postgres
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: secret
-                  key: postgres-password
-            - name: POSTGRES_HOST
-              value: postgres-service
-            - name: NEXTCLOUD_TRUSTED_DOMAINS
-              value: nextcloud.egidiocaprino.com
-          volumeMounts:
-            - name: data
-              mountPath: /var/www/html
-      volumes:
+      - name: nextcloud
+        image: nextcloud:25.0.4
+        ports:
+        - containerPort: 80
+        env:
+        - name: NEXTCLOUD_ADMIN_USER
+          value: admin
+        - name: NEXTCLOUD_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secret
+              key: nextcloud-admin-password
+        - name: POSTGRES_DB
+          value: postgres
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secret
+              key: postgres-password
+        - name: POSTGRES_HOST
+          value: postgres-service
+        - name: NEXTCLOUD_TRUSTED_DOMAINS
+          value: nextcloud.egidiocaprino.com
+        volumeMounts:
         - name: data
-          persistentVolumeClaim:
-            claimName: nextcloud-data-volume-claim
+          mountPath: /var/www/html
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: nextcloud-data-volume-claim
