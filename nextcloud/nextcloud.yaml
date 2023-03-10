@@ -1,7 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: nextcloud
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  tls:
+    - hosts:
+        - nextcloud.egidiocaprino.com
+      secretName: nextcloud-certificate
+  rules:
+    - host: nextcloud.egidiocaprino.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nextcloud-service
+                port:
+                  number: 80
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: nextcloud-service
+  namespace: nextcloud
 spec:
   selector:
     app: nextcloud
@@ -14,6 +39,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: nextcloud-data-volume-claim
+  namespace: nextcloud
   labels:
     app: nextcloud
 spec:
@@ -27,6 +53,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nextcloud-deployment
+  namespace: nextcloud
 spec:
   selector:
     matchLabels:
@@ -50,16 +77,18 @@ spec:
                   name: secret
                   key: nextcloud-admin-password
             - name: POSTGRES_DB
-              value: nextcloud
+              value: postgres
             - name: POSTGRES_USER
-              value: nextcloud
+              value: postgres
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: secret
-                  key: postgres-nextcloud-password
+                  key: postgres-password
             - name: POSTGRES_HOST
               value: postgres-service
+            - name: NEXTCLOUD_TRUSTED_DOMAINS
+              value: nextcloud.egidiocaprino.com
           volumeMounts:
             - name: data
               mountPath: /var/www/html
