@@ -90,6 +90,10 @@ spec:
           value: postgres-service
         - name: NEXTCLOUD_TRUSTED_DOMAINS
           value: nextcloud.egidiocaprino.com
+        - name: OVERWRITEHOST
+          value: nextcloud.egidiocaprino.com
+        - name: OVERWRITEPROTOCOL
+          value: https
         volumeMounts:
         - name: data
           mountPath: /var/www/html
