@@ -7,7 +7,7 @@ metadata:
     kubernetes.io/ingress.class: "traefik"
 spec:
   rules:
-  - host: huginn.egidiocaprino.com
+  - host: huginn.lenovo.local
     http:
       paths:
       - path: /
@@ -69,12 +69,12 @@ spec:
           mountPath: /mnt
       containers:
       - name: huginn
-        image: huginn/huginn:56338790a7f396163296b1dd0e9e8f22254b452f
+        image: huginn/huginn:68cf7b165f1e3d7a2ff0f28b656546e9296e59f9
         ports:
         - containerPort: 3000
         env:
         - name: DOMAIN
-          value: huginn.egidiocaprino.com
+          value: huginn.lenovo.local
         - name: PORT
           value: "3000"
         - name: SMTP_USER_NAME
@@ -103,7 +103,7 @@ spec:
               name: secret
               key: smtp-email
         - name: TIMEZONE
-          value: Europe/Rome
+          value: Rome
         volumeMounts:
         - name: mysql
           mountPath: /var/lib/mysql
