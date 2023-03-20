@@ -69,7 +69,7 @@ spec:
           mountPath: /mnt
       containers:
       - name: huginn
-        image: huginn/huginn:68cf7b165f1e3d7a2ff0f28b656546e9296e59f9
+        image: huginn/huginn:ba852f1edc26bf0e87d6a7a13389124e22d0bde0
         ports:
         - containerPort: 3000
         env:
