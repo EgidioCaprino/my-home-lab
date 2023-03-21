@@ -1,0 +1,76 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: invidious
+  name: nginx-ingress
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  tls:
+  - hosts:
+    - invidious.egidiocaprino.com
+    secretName: invidious-certificate
+  rules:
+  - host: invidious.egidiocaprino.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: invidious-service
+            port:
+              number: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: invidious
+  name: invidious-service
+spec:
+  selector:
+    app: invidious
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: invidious
+  name: invidious-deployment
+spec:
+  selector:
+    matchLabels:
+      app: invidious
+  template:
+    metadata:
+      labels:
+        app: invidious
+    spec:
+      containers:
+      - name: invidious
+        image: quay.io/invidious/invidious:8a44bd11d2abab8c9203d6dc3c3d5824e5e26327 
+        ports:
+        - containerPort: 3000
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secret
+              key: postgres-password
+        - name: INVIDIOUS_CONFIG
+          value: |
+            db:
+              dbname: postgres
+              user: postgres
+              password: $(POSTGRES_PASSWORD)
+              host: postgres-service
+              port: 5432
+            check_tables: true
+            external_port: 443
+            domain: invidious.egidiocaprino.com
+            https_only: true
+            registration_enabled: false
+            admins: ["egidio"]
