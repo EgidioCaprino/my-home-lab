@@ -51,7 +51,7 @@ spec:
     spec:
       containers:
       - name: invidious
-        image: quay.io/invidious/invidious:8a44bd11d2abab8c9203d6dc3c3d5824e5e26327 
+        image: quay.io/invidious/invidious:latest 
         ports:
         - containerPort: 3000
         env:
