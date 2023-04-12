@@ -38,7 +38,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nextcloud-data-volume-claim
+  name: nextcloud-data-volume-claim-2
   namespace: nextcloud
   labels:
     app: nextcloud
@@ -47,7 +47,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: 70Gi
   storageClassName: longhorn
 ---
 apiVersion: apps/v1
@@ -66,7 +66,7 @@ spec:
     spec:
       containers:
       - name: nextcloud
-        image: nextcloud:25.0.4
+        image: nextcloud:25.0.5
         ports:
         - containerPort: 80
         env:
@@ -100,4 +100,4 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: nextcloud-data-volume-claim
+          claimName: nextcloud-data-volume-claim-2

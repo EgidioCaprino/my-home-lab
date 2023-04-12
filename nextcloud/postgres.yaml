@@ -14,7 +14,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: postgres-data-volume-claim
+  name: postgres-data-volume-claim-2
   namespace: nextcloud
   labels:
     app: postgres
@@ -23,7 +23,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 2Gi
+      storage: 500Mi
   storageClassName: longhorn
 ---
 apiVersion: apps/v1
@@ -59,4 +59,4 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: postgres-data-volume-claim
+          claimName: postgres-data-volume-claim-2
