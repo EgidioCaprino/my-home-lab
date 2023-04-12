@@ -35,7 +35,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   namespace: huginn
-  name: huginn-mysql-volume-claim
+  name: huginn-mysql-volume-claim-2
   labels:
     app: huginn
 spec:
@@ -43,7 +43,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 4Gi
+      storage: 500Mi
   storageClassName: longhorn
 ---
 apiVersion: apps/v1
@@ -69,7 +69,7 @@ spec:
           mountPath: /mnt
       containers:
       - name: huginn
-        image: huginn/huginn:ba852f1edc26bf0e87d6a7a13389124e22d0bde0
+        image: ghcr.io/huginn/huginn
         ports:
         - containerPort: 3000
         env:
@@ -110,4 +110,4 @@ spec:
       volumes:
       - name: mysql
         persistentVolumeClaim:
-          claimName: huginn-mysql-volume-claim
+          claimName: huginn-mysql-volume-claim-2
