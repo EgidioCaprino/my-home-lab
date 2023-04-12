@@ -38,7 +38,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: vaultwarden-data-volume-claim
+  name: vaultwarden-data-volume-claim-2
   namespace: vaultwarden
   labels:
     app: vaultwarden
@@ -47,7 +47,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 4Gi
+      storage: 300Mi
   storageClassName: longhorn
 ---
 apiVersion: apps/v1
@@ -105,4 +105,4 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: vaultwarden-data-volume-claim
+          claimName: vaultwarden-data-volume-claim-2
