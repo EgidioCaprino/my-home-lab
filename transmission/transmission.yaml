@@ -45,19 +45,6 @@ spec:
     port: 51413
     targetPort: 51413
 ---
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  namespace: transmission
-  name: transmission-download-volume-claim
-spec:
-  storageClassName: nfs-client
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -95,5 +82,5 @@ spec:
           mountPath: /downloads
       volumes:
       - name: downloads
-        persistentVolumeClaim:
-          claimName: transmission-download-volume-claim
+        hostPath:
+          path: /mnt/transmission
