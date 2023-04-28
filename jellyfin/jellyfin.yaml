@@ -35,6 +35,21 @@ spec:
     port: 8096
     targetPort: 8096
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: jellyfin
+  name: jellyfin-data-volume-claim
+  labels:
+    app: jellyfin
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+  storageClassName: longhorn
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -60,9 +75,14 @@ spec:
         - name: JELLYFIN_DATA_DIR
           value: /data
         volumeMounts:
+        - name: data
+          mountPath: /data
         - name: transmission
           mountPath: /transmission
       volumes:
       - name: transmission
         hostPath:
           path: /mnt/transmission
+      - name: data
+        persistentVolumeClaim:
+          claimName: jellyfin-data-volume-claim
