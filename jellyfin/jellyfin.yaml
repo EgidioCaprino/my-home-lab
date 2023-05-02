@@ -79,6 +79,8 @@ spec:
           mountPath: /data
         - name: transmission
           mountPath: /transmission
+        - name: music
+          mountPath: /music
       volumes:
       - name: transmission
         hostPath:
@@ -86,3 +88,6 @@ spec:
       - name: data
         persistentVolumeClaim:
           claimName: jellyfin-data-volume-claim
+      - name: music
+        hostPath:
+          path: /mnt/music
