@@ -69,7 +69,7 @@ spec:
           mountPath: /mnt
       containers:
       - name: huginn
-        image: ghcr.io/huginn/huginn
+        image: ghcr.io/huginn/huginn:latest
         ports:
         - containerPort: 3000
         env:
