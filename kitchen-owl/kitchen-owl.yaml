@@ -26,6 +26,13 @@ spec:
             name: kitchen-owl-web-service
             port:
               number: 80
+      - path: /backend
+        pathType: Prefix
+        backend:
+          service:
+            name: kitchen-owl-backend-service
+            port:
+              number: 5000
 ---
 apiVersion: v1
 kind: Service
