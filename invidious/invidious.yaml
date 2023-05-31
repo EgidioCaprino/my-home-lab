@@ -74,3 +74,4 @@ spec:
             https_only: true
             registration_enabled: false
             admins: ["egidio"]
+            channel_threads: 4
