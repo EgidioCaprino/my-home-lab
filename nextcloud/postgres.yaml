@@ -42,7 +42,7 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: postgres:15.2
+        image: postgres
         ports:
         - containerPort: 5432
         env:
