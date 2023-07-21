@@ -76,7 +76,7 @@ spec:
     spec:
       containers:
       - name: transmission
-        image: lscr.io/linuxserver/transmission:4.0.3
+        image: lscr.io/linuxserver/transmission
         ports:
         - containerPort: 9091
         - containerPort: 51413
