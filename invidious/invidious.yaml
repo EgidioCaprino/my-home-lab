@@ -75,3 +75,4 @@ spec:
             registration_enabled: false
             admins: ["egidio"]
             channel_threads: 4
+            hmac_key: ahfoo8Ijiepichesheeg

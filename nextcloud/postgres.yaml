@@ -42,7 +42,7 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: postgres
+        image: postgres:15
         ports:
         - containerPort: 5432
         env:
@@ -56,6 +56,8 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /mnt
+        # command: ['sh', '-c']
+        # args: ["while true; do echo '...' && sleep 5; done;"]
       terminationGracePeriodSeconds: 120
       volumes:
       - name: data
