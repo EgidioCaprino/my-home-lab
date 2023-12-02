@@ -1,0 +1,19 @@
+name: home-server
+
+services:
+  postgres:
+    image: postgres:16.1
+    restart: always
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_postgres_password
+    secrets:
+      - postgres_postgres_password
+      - postgres_nextcloud_password
+    volumes:
+      - ./postgres/volumes/data:/var/lib/postgresql/data
+
+secrets:
+  postgres_postgres_password:
+    file: ./postgres/secrets/postgres-password.txt
+  postgres_nextcloud_password:
+    file: ./postgres/secrets/nextcloud-password.txt
