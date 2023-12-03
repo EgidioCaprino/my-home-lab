@@ -2,18 +2,46 @@ name: home-server
 
 services:
   postgres:
-    image: postgres:16.1
-    restart: always
+    image: postgres:16
+    restart: unless-stopped
     environment:
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_postgres_password
     secrets:
       - postgres_postgres_password
-      - postgres_nextcloud_password
     volumes:
       - ./postgres/volumes/data:/var/lib/postgresql/data
+
+  nextcloud-aio-mastercontainer:
+    image: nextcloud/all-in-one:latest
+    init: true
+    container_name: nextcloud-aio-mastercontainer
+    restart: unless-stopped
+    volumes:
+      - nextcloud_aio_mastercontainer:/mnt/docker-aio-config
+      - ./nextcloud/ncdata:/mnt/ncdata
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - APACHE_PORT=11000
+      - APACHE_IP_BINDING=0.0.0.0
+      - NEXTCLOUD_DATADIR=/mnt/ncdata
+      - NEXTCLOUD_STARTUP_APPS=tasks calendar contacts notes
+    ports:
+      - 8080:8080
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - /etc/letsencrypt/archive/egidiocaprino.com:/certs
+    depends_on:
+      - nextcloud-aio-mastercontainer
+    network_mode: host
+
+volumes:
+  nextcloud_aio_mastercontainer:
+    name: nextcloud_aio_mastercontainer
 
 secrets:
   postgres_postgres_password:
     file: ./postgres/secrets/postgres-password.txt
-  postgres_nextcloud_password:
-    file: ./postgres/secrets/nextcloud-password.txt
