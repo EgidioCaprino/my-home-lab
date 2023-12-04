@@ -1,0 +1,11 @@
+https://nextcloud.egidiocaprino.com:443 {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy localhost:{env.NEXTCLOUD_HTTP_PORT}
+  tls /certs/fullchain1.pem /certs/privkey1.pem
+}
+
+https://vaultwarden.egidiocaprino.com:443 {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy localhost:{env.VAULTWARDEN_HTTP_PORT}
+  tls /certs/fullchain1.pem /certs/privkey1.pem
+}
