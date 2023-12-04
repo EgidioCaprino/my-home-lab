@@ -1,2 +1,2 @@
 secret.yaml
-**/secrets/**
+docker/postgres/postgres-password.txt

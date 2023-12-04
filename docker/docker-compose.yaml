@@ -34,6 +34,25 @@ services:
     ports:
       - "${VAULTWARDEN_HTTP_PORT}:80"
 
+  kitchenowl:
+    image: tombursch/kitchenowl:latest
+    restart: unless-stopped
+    environment:
+      - JWT_SECRET_KEY=
+      - FRONT_URL=https://kitchenowl.egidiocaprino.com
+    volumes:
+      - ./kitchenowl:/data
+
+  kitchenowl-web:
+    image: tombursch/kitchenowl-web:latest
+    restart: unless-stopped
+    environment:
+      - BACK_URL=kitchenowl:5000
+    depends_on:
+      - kitchenowl
+    ports:
+      - "${KITCHENOWL_HTTP_PORT}:80"
+
   caddy:
     image: caddy:2
     restart: unless-stopped
@@ -43,15 +62,17 @@ services:
     depends_on:
       - nextcloud-aio-mastercontainer
       - vaultwarden
+      - kitchenowl-web
     network_mode: host
     environment:
       - NEXTCLOUD_HTTP_PORT=${NEXTCLOUD_HTTP_PORT}
       - VAULTWARDEN_HTTP_PORT=${VAULTWARDEN_HTTP_PORT}
+      - KITCHENOWL_HTTP_PORT=${KITCHENOWL_HTTP_PORT}
 
 volumes:
   nextcloud_aio_mastercontainer:
     name: nextcloud_aio_mastercontainer
 
-# secrets:
-#   postgres_postgres_password:
-#     file: ./postgres/secrets/postgres-password.txt
+secrets:
+  kitchenowl-jwt-secret-key:
+    file: ./kitchenowl/jwt-secret-key.txt
