@@ -72,6 +72,19 @@ services:
     secrets:
       - transmission-password
 
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    restart: unless-stopped
+    volumes:
+      - ./jellyfin/config:/config
+      - ./jellyfin/cache:/cache
+      - ../transmission/downloads/complete:/downloads
+    user: "${UID}:${GID}"
+    environment:
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.egidiocaprino.com
+    ports:
+      - "${JELLYFIN_HTTP_PORT}:8096"
+
   caddy:
     image: caddy:2
     restart: unless-stopped
@@ -89,6 +102,7 @@ services:
       - VAULTWARDEN_HTTP_PORT=${VAULTWARDEN_HTTP_PORT}
       - KITCHENOWL_HTTP_PORT=${KITCHENOWL_HTTP_PORT}
       - TRANSMISSION_HTTP_PORT=${TRANSMISSION_HTTP_PORT}
+      - JELLYFIN_HTTP_PORT=${JELLYFIN_HTTP_PORT}
 
 volumes:
   nextcloud_aio_mastercontainer:
