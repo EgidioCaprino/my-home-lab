@@ -1,2 +1,3 @@
 secret.yaml
 docker/postgres/postgres-password.txt
+docker/transmission/password-secret.txt
