@@ -78,7 +78,7 @@ services:
     volumes:
       - ./jellyfin/config:/config
       - ./jellyfin/cache:/cache
-      - ../transmission/downloads/complete:/downloads
+      - ./transmission/downloads/complete:/downloads
     user: "${UID}:${GID}"
     environment:
       - JELLYFIN_PublishedServerUrl=https://jellyfin.egidiocaprino.com
