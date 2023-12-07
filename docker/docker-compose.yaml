@@ -1,16 +1,6 @@
 name: home-server
 
 services:
-  # postgres:
-  #   image: postgres:16
-  #   restart: unless-stopped
-  #   environment:
-  #     POSTGRES_PASSWORD_FILE: /run/secrets/postgres_postgres_password
-  #   secrets:
-  #     - postgres_postgres_password
-  #   volumes:
-  #     - ./postgres/volumes/data:/var/lib/postgresql/data
-
   nextcloud-aio-mastercontainer:
     image: nextcloud/all-in-one:latest
     init: true
@@ -29,6 +19,7 @@ services:
 
   vaultwarden:
     image: vaultwarden/server:latest
+    restart: unless-stopped
     volumes:
       - ./vaultwarden:/data
     ports:
