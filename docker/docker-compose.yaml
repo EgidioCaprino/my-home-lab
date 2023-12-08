@@ -29,10 +29,11 @@ services:
     image: tombursch/kitchenowl:latest
     restart: unless-stopped
     environment:
-      - JWT_SECRET_KEY=
       - FRONT_URL=https://kitchenowl.egidiocaprino.com
     volumes:
-      - ./kitchenowl:/data
+      - ./kitchenowl/data:/data
+    env_file:
+      - ./kitchenowl/.env
 
   kitchenowl-web:
     image: tombursch/kitchenowl-web:latest
