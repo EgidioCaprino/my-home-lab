@@ -70,7 +70,7 @@ services:
     volumes:
       - ./jellyfin/config:/config
       - ./jellyfin/cache:/cache
-      - ./transmission/downloads/complete:/downloads
+      - ./transmission/downloads/complete:/downloads:ro
     user: "${UID}:${GID}"
     environment:
       - JELLYFIN_PublishedServerUrl=https://jellyfin.egidiocaprino.com
@@ -82,7 +82,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-      - /etc/letsencrypt/archive/egidiocaprino.com:/certs
+      - /etc/letsencrypt/archive/egidiocaprino.com:/certs:ro
     depends_on:
       - nextcloud-aio-mastercontainer
       - vaultwarden
