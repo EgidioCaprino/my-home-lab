@@ -27,3 +27,9 @@ https://jellyfin.egidiocaprino.com:443 {
   reverse_proxy localhost:{env.JELLYFIN_HTTP_PORT}
   tls /certs/fullchain1.pem /certs/privkey1.pem
 }
+
+https://changedetection.egidiocaprino.com:443 {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy localhost:{env.CHANGE_DETECTION_HTTP_PORT}
+  tls /certs/fullchain1.pem /certs/privkey1.pem
+}
