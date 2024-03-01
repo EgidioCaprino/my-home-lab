@@ -1,35 +1,35 @@
 https://nextcloud.egidiocaprino.com:443 {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.NEXTCLOUD_HTTP_PORT}
-  tls /certs/fullchain1.pem /certs/privkey1.pem
+  tls /certs/fullchain2.pem /certs/privkey2.pem
 }
 
 https://vaultwarden.egidiocaprino.com:443 {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.VAULTWARDEN_HTTP_PORT}
-  tls /certs/fullchain1.pem /certs/privkey1.pem
+  tls /certs/fullchain2.pem /certs/privkey2.pem
 }
 
 https://kitchenowl.egidiocaprino.com:443 {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.KITCHENOWL_HTTP_PORT}
-  tls /certs/fullchain1.pem /certs/privkey1.pem
+  tls /certs/fullchain2.pem /certs/privkey2.pem
 }
 
 https://transmission.egidiocaprino.com:443 {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.TRANSMISSION_HTTP_PORT}
-  tls /certs/fullchain1.pem /certs/privkey1.pem
+  tls /certs/fullchain2.pem /certs/privkey2.pem
 }
 
 https://jellyfin.egidiocaprino.com:443 {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.JELLYFIN_HTTP_PORT}
-  tls /certs/fullchain1.pem /certs/privkey1.pem
+  tls /certs/fullchain2.pem /certs/privkey2.pem
 }
 
 https://changedetection.egidiocaprino.com:443 {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.CHANGE_DETECTION_HTTP_PORT}
-  tls /certs/fullchain1.pem /certs/privkey1.pem
+  tls /certs/fullchain2.pem /certs/privkey2.pem
 }
