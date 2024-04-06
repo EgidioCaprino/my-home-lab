@@ -93,6 +93,20 @@ services:
       - "${CHANGE_DETECTION_HTTP_PORT}:5000"
     restart: unless-stopped
 
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie:v1.4.0
+    restart: unless-stopped
+    ports:
+      - "${MEALIE_HTTP_PORT}:9000"
+    volumes:
+      - ./mealie:/app/data/
+    environment:
+      ALLOW_SIGNUP: false
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/Rome
+      BASE_URL: https://mealie.egidiocaprino.com
+
   caddy:
     image: caddy:2
     restart: unless-stopped
@@ -113,6 +127,7 @@ services:
       - TRANSMISSION_HTTP_PORT=${TRANSMISSION_HTTP_PORT}
       - JELLYFIN_HTTP_PORT=${JELLYFIN_HTTP_PORT}
       - CHANGE_DETECTION_HTTP_PORT=${CHANGE_DETECTION_HTTP_PORT}
+      - MEALIE_HTTP_PORT=${MEALIE_HTTP_PORT}
 
 volumes:
   nextcloud_aio_mastercontainer:
