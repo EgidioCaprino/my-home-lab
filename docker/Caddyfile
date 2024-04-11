@@ -39,3 +39,9 @@ https://mealie.egidiocaprino.com:443 {
   reverse_proxy localhost:{env.MEALIE_HTTP_PORT}
   tls /certs/fullchain2.pem /certs/privkey2.pem
 }
+
+https://paperless.egidiocaprino.com:443 {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy localhost:{env.PAPERLESS_HTTP_PORT}
+  tls /certs/fullchain2.pem /certs/privkey2.pem
+}

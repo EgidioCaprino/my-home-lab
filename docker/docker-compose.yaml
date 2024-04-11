@@ -107,6 +107,32 @@ services:
       TZ: Europe/Rome
       BASE_URL: https://mealie.egidiocaprino.com
 
+  paperless-redis:
+    image: redis:7
+    restart: unless-stopped
+
+  paperless:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    restart: unless-stopped
+    depends_on:
+      - paperless-redis
+    ports:
+      - "${PAPERLESS_HTTP_PORT}:8000"
+    volumes:
+      - ./paperless/data:/usr/src/paperless/data
+      - ./paperless/media:/usr/src/paperless/media
+      - ./paperless/export:/usr/src/paperless/export
+      - ./paperless/consume:/usr/src/paperless/consume
+    environment:
+      PAPERLESS_REDIS: redis://paperless-redis:6379
+      SERMAP_UID: 1000
+      USERMAP_GID: 1000
+      PAPERLESS_OCR_LANGUAGE: ita
+      PAPERLESS_OCR_LANGUAGES: eng ita
+      PAPERLESS_URL: https://paperless.egidiocaprino.com
+      PAPERLESS_SECRET_KEY: fill-me
+      PAPERLESS_TIME_ZONE: Europe/Rome
+
   caddy:
     image: caddy:2
     restart: unless-stopped
@@ -128,6 +154,7 @@ services:
       - JELLYFIN_HTTP_PORT=${JELLYFIN_HTTP_PORT}
       - CHANGE_DETECTION_HTTP_PORT=${CHANGE_DETECTION_HTTP_PORT}
       - MEALIE_HTTP_PORT=${MEALIE_HTTP_PORT}
+      - PAPERLESS_HTTP_PORT=${PAPERLESS_HTTP_PORT}
 
 volumes:
   nextcloud_aio_mastercontainer:
