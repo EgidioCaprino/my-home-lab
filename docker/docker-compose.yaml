@@ -133,6 +133,15 @@ services:
       PAPERLESS_SECRET_KEY: fill-me
       PAPERLESS_TIME_ZONE: Europe/Rome
 
+  portainer:
+    image: portainer/portainer-ee:latest
+    restart: unless-stopped
+    ports:
+      - "${PORTAINER_HTTP_PORT}:9000"
+    volumes:
+      - ./portainer:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
   caddy:
     image: caddy:2
     restart: unless-stopped
@@ -155,6 +164,7 @@ services:
       - CHANGE_DETECTION_HTTP_PORT=${CHANGE_DETECTION_HTTP_PORT}
       - MEALIE_HTTP_PORT=${MEALIE_HTTP_PORT}
       - PAPERLESS_HTTP_PORT=${PAPERLESS_HTTP_PORT}
+      - PORTAINER_HTTP_PORT=${PORTAINER_HTTP_PORT}
 
 volumes:
   nextcloud_aio_mastercontainer:
