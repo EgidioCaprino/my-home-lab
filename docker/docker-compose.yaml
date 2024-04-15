@@ -142,6 +142,18 @@ services:
       - ./portainer:/data
       - /var/run/docker.sock:/var/run/docker.sock
 
+  grocy:
+    image: lscr.io/linuxserver/grocy:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Rome
+    volumes:
+      - ./config:/config
+    ports:
+      - "${GROCY_HTTP_PORT}:80"
+    restart: unless-stopped
+
   caddy:
     image: caddy:2
     restart: unless-stopped
@@ -165,6 +177,7 @@ services:
       - MEALIE_HTTP_PORT=${MEALIE_HTTP_PORT}
       - PAPERLESS_HTTP_PORT=${PAPERLESS_HTTP_PORT}
       - PORTAINER_HTTP_PORT=${PORTAINER_HTTP_PORT}
+      - GROCY_HTTP_PORT=${GROCY_HTTP_PORT}
 
 volumes:
   nextcloud_aio_mastercontainer:

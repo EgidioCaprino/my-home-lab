@@ -51,3 +51,9 @@ https://portainer.egidiocaprino.com:443 {
   reverse_proxy localhost:{env.PORTAINER_HTTP_PORT}
   tls /certs/fullchain2.pem /certs/privkey2.pem
 }
+
+https://grocy.egidiocaprino.com:443 {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy localhost:{env.GROCY_HTTP_PORT}
+  tls /certs/fullchain2.pem /certs/privkey2.pem
+}
