@@ -34,12 +34,6 @@ https://changedetection.egidiocaprino.com:443 {
   tls /certs/fullchain2.pem /certs/privkey2.pem
 }
 
-https://mealie.egidiocaprino.com:443 {
-  header Strict-Transport-Security max-age=31536000;
-  reverse_proxy localhost:{env.MEALIE_HTTP_PORT}
-  tls /certs/fullchain2.pem /certs/privkey2.pem
-}
-
 https://paperless.egidiocaprino.com:443 {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.PAPERLESS_HTTP_PORT}
@@ -55,5 +49,11 @@ https://portainer.egidiocaprino.com:443 {
 https://grocy.egidiocaprino.com:443 {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.GROCY_HTTP_PORT}
+  tls /certs/fullchain2.pem /certs/privkey2.pem
+}
+
+https://photoprism.egidiocaprino.com:443 {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy localhost:{env.PHOTOPRISM_HTTP_PORT}
   tls /certs/fullchain2.pem /certs/privkey2.pem
 }
