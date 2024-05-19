@@ -142,6 +142,7 @@ services:
 
   photoprism:
     image: photoprism/photoprism:latest
+    restart: unless-stopped
     stop_grace_period: 10s
     security_opt:
       - seccomp:unconfined
@@ -191,7 +192,7 @@ services:
     image: caddy:2
     restart: unless-stopped
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - /etc/letsencrypt/archive/egidiocaprino.com:/certs:ro
     depends_on:
       - nextcloud-aio-mastercontainer
