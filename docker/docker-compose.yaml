@@ -100,7 +100,7 @@ services:
       - PGID=1000
       - TZ=Europe/Rome
     volumes:
-      - ./config:/config
+      - ./grocy:/config
     ports:
       - "${GROCY_HTTP_PORT}:80"
     restart: unless-stopped
