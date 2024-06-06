@@ -1,0 +1,9 @@
+[Unit]
+Description=Sync Photoprism backups on a remote location
+
+[Service]
+Type=oneshot
+ExecStart=/root/sync-photoprism-remote-backups.sh
+
+[Install]
+Requires=network.target

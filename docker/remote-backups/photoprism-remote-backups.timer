@@ -1,0 +1,9 @@
+[Unit]
+Description=Sync Photoprism backups on a remote location daily at 1:00 am
+
+[Timer]
+OnCalendar=Mon..Fri 00:10 Europe/Rome
+Persistent=true
+
+[Install]
+WantedBy=timers.target

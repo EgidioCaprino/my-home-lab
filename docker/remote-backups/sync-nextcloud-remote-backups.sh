@@ -40,3 +40,5 @@ if docker ps --format "{{.Names}}" | grep "^nextcloud-aio-nextcloud$"; then
 else
   echo "Synced the backup repository successfully"
 fi
+
+curl -m 10 --retry 5 https://hc-ping.com/85582a96-f6c4-404c-ad51-9dc13a28bc6b
