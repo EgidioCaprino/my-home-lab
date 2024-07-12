@@ -1,0 +1,9 @@
+[Unit]
+Description=Create local Paperless backup and sync it to AWS S3
+
+[Service]
+Type=oneshot
+ExecStart=/root/paperless-backup.sh
+
+[Install]
+Requires=network.target
