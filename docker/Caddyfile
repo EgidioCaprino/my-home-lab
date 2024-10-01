@@ -1,65 +1,49 @@
-https://nextcloud.egidiocaprino.com:443 {
+http://nextcloud.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.NEXTCLOUD_HTTP_PORT}
-  tls /certs/fullchain4.pem /certs/privkey4.pem
 }
 
-https://vaultwarden.egidiocaprino.com:443 {
+http://vaultwarden.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.VAULTWARDEN_HTTP_PORT}
-  tls /certs/fullchain4.pem /certs/privkey4.pem
 }
 
-https://kitchenowl.egidiocaprino.com:443 {
-  header Strict-Transport-Security max-age=31536000;
+http://kitchenowl.egidiocaprino.com {
+  header Strict-Transport-Security max-age=31536000         ;
   reverse_proxy localhost:{env.KITCHENOWL_HTTP_PORT}
-  tls /certs/fullchain4.pem /certs/privkey4.pem
 }
 
-https://transmission.egidiocaprino.com:443 {
+http://transmission.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.TRANSMISSION_HTTP_PORT}
-  tls /certs/fullchain4.pem /certs/privkey4.pem
 }
 
-https://jellyfin.egidiocaprino.com:443 {
+http://jellyfin.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.JELLYFIN_HTTP_PORT}
-  tls /certs/fullchain4.pem /certs/privkey4.pem
 }
 
-https://changedetection.egidiocaprino.com:443 {
+http://changedetection.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.CHANGE_DETECTION_HTTP_PORT}
-  tls /certs/fullchain4.pem /certs/privkey4.pem
 }
 
-https://paperless.egidiocaprino.com:443 {
+http://paperless.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.PAPERLESS_HTTP_PORT}
-  tls /certs/fullchain4.pem /certs/privkey4.pem
 }
 
-https://portainer.egidiocaprino.com:443 {
+http://portainer.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.PORTAINER_HTTP_PORT}
-  tls /certs/fullchain4.pem /certs/privkey4.pem
 }
 
-https://grocy.egidiocaprino.com:443 {
-  header Strict-Transport-Security max-age=31536000;
-  reverse_proxy localhost:{env.GROCY_HTTP_PORT}
-  tls /certs/fullchain4.pem /certs/privkey4.pem
-}
-
-https://photoprism.egidiocaprino.com:443 {
+http://photoprism.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.PHOTOPRISM_HTTP_PORT}
-  tls /certs/fullchain4.pem /certs/privkey4.pem
 }
 
-https://navidrome.egidiocaprino.com:443 {
+http://navidrome.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.NAVIDROME_HTTP_PORT}
-  tls /certs/fullchain4.pem /certs/privkey4.pem
 }
