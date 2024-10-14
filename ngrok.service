@@ -1,0 +1,10 @@
+[Service]
+Type=Simple
+ExecStart=/usr/local/bin/ngrok http --domain='*.egidiocaprino.com' 80
+
+[Unit]
+Wants=network-online.target
+After=network-online.target
+
+[Install]
+WantedBy=default.target
