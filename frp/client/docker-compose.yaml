@@ -1,0 +1,12 @@
+name: frp-server
+
+services:
+  frpc:
+    image: gists/frp:0.61.0
+    network_mode: host
+    volumes:
+      - ./frpc.toml:/etc/frpc.toml:ro
+      - /etc/letsencrypt/archive/egidiocaprino.com/fullchain4.pem:/opt/fullchain.pem:ro
+      - /etc/letsencrypt/archive/egidiocaprino.com/privkey4.pem:/opt/privkey.pem:ro
+    command: frpc -c /etc/frpc.toml
+    restart: always
