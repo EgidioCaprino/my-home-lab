@@ -6,9 +6,9 @@ services:
     network_mode: host
     volumes:
       - ./frpc.toml:/etc/frpc.toml:ro
-      - /etc/letsencrypt/archive/egidiocaprino.com/fullchain4.pem:/opt/fullchain.pem:ro
-      - /etc/letsencrypt/archive/egidiocaprino.com/privkey4.pem:/opt/privkey.pem:ro
-      - ./certificate.pem:/opt/frp/certificate.pem
-      - ./private.key:/opt/frp/private.key
+      - ./fullchain.pem:/opt/fullchain.pem:ro
+      - ./privkey.pem:/opt/privkey.pem:ro
+      - ./certificate.pem:/opt/frp/certificate.pem:ro
+      - ./private.key:/opt/frp/private.key:ro
     command: frpc -c /etc/frpc.toml
     restart: always
