@@ -9,5 +9,7 @@ services:
       - "443:443"
     volumes:
       - ./frps.toml:/etc/frps.toml
+      - ./certificate.pem:/opt/frp/certificate.pem
+      - ./private.key:/opt/frp/private.key
     command: frps -c /etc/frps.toml
     restart: always
