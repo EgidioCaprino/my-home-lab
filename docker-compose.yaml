@@ -65,7 +65,7 @@ services:
       - transmission-password
 
   jellyfin:
-    image: jellyfin/jellyfin:10.10.2
+    image: jellyfin/jellyfin:10.10.3
     restart: unless-stopped
     volumes:
       - ./jellyfin/config:/config
