@@ -1,0 +1,15 @@
+name: frp-server
+
+services:
+  frps:
+    image: gists/frp:0.61.0
+    ports:
+      - "7000:7000"
+      - "7500:7500"
+      - "443:443"
+    volumes:
+      - ./frps.toml:/etc/frps.toml
+      - ./certificate.pem:/opt/frp/certificate.pem
+      - ./private.key:/opt/frp/private.key
+    command: frps -c /etc/frps.toml
+    restart: always
