@@ -1,0 +1,17 @@
+services:
+  mbsync:
+    image: egidiocaprino/mbsync:1.0.0
+    environment:
+      - IMAP_HOST=mail.infomaniak.com
+      - IMAP_PORT=993
+    volumes:
+      - ./Maildir:/home/mbsync/Maildir
+    secrets:
+      - imap_user
+      - imap_password
+
+secrets:
+  imap_user:
+    file: ./imap_user
+  imap_password:
+    file: ./imap_password
