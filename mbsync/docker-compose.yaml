@@ -2,13 +2,21 @@ services:
   mbsync:
     image: egidiocaprino/mbsync:1.0.0
     environment:
-      - IMAP_HOST=mail.infomaniak.com
-      - IMAP_PORT=993
+      - "IMAP_HOST=mail.infomaniak.com"
+      - "IMAP_PORT=993"
+      - "CRON_TIME=0 0 * * *"
     volumes:
       - ./Maildir:/home/mbsync/Maildir
     secrets:
       - imap_user
       - imap_password
+
+  docker_cron:
+    image: chrisbesch/docker_cron
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:rw"
+    environment:
+      - TZ=Europe/Amsterdam
 
 secrets:
   imap_user:
