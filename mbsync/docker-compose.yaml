@@ -5,13 +5,14 @@ services:
       - "IMAP_HOST=mail.infomaniak.com"
       - "IMAP_PORT=993"
       - "CRON_TIME=0 0 * * *"
+      - "DELETE_EMAILS_OLDER_THAN_DAYS=150"
     volumes:
       - ./Maildir:/home/mbsync/Maildir
     secrets:
       - imap_user
       - imap_password
 
-  docker_cron:
+  cron:
     image: chrisbesch/docker_cron
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:rw"
