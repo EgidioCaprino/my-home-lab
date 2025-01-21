@@ -118,6 +118,7 @@ services:
       PAPERLESS_URL: https://paperless.egidiocaprino.com
       PAPERLESS_SECRET_KEY: fill-me
       PAPERLESS_TIME_ZONE: Europe/Rome
+      PAPERLESS_OCR_USER_ARGS: '{ "invalidate_digital_signatures": true }'
 
   portainer:
     image: portainer/portainer-ee:2.25.1
