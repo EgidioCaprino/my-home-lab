@@ -18,7 +18,7 @@ services:
       - 8080:8080
 
   vaultwarden:
-    image: vaultwarden/server:1.32.7
+    image: vaultwarden/server:1.33.0
     restart: unless-stopped
     volumes:
       - ./vaultwarden:/data
@@ -46,7 +46,7 @@ services:
       - ${KITCHENOWL_HTTP_PORT}:80
 
   transmission:
-    image: lscr.io/linuxserver/transmission:4.0.6-r1-ls275
+    image: lscr.io/linuxserver/transmission:4.0.6-r1-ls279
     restart: unless-stopped
     ports:
       - ${TRANSMISSION_HTTP_PORT}:9091
@@ -65,7 +65,7 @@ services:
       - transmission-password
 
   jellyfin:
-    image: jellyfin/jellyfin:10.10.3
+    image: jellyfin/jellyfin:10.10.5
     restart: unless-stopped
     volumes:
       - ./jellyfin/config:/config
@@ -78,7 +78,7 @@ services:
       - ${JELLYFIN_HTTP_PORT}:8096
 
   changedetection:
-    image: ghcr.io/dgtlmoon/changedetection.io:0.48.05
+    image: ghcr.io/dgtlmoon/changedetection.io:0.49.0
     volumes:
       - ./changedetection:/datastore
     environment:
@@ -94,11 +94,11 @@ services:
     restart: unless-stopped
 
   paperless-redis:
-    image: redis:7.4.1
+    image: redis:7.4.2
     restart: unless-stopped
 
   paperless:
-    image: ghcr.io/paperless-ngx/paperless-ngx:2.13.5
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.14.5
     restart: unless-stopped
     depends_on:
       - paperless-redis
@@ -121,7 +121,7 @@ services:
       PAPERLESS_OCR_USER_ARGS: '{ "invalidate_digital_signatures": true }'
 
   portainer:
-    image: portainer/portainer-ee:2.25.1
+    image: portainer/portainer-ee:2.26.1
     restart: unless-stopped
     ports:
       - ${PORTAINER_HTTP_PORT}:9000
@@ -176,7 +176,7 @@ services:
       - ./photoprism/import:/photoprism/import
 
   navidrome:
-    image: deluan/navidrome:0.54.3
+    image: deluan/navidrome:0.54.4
     user: 1000:1000
     ports:
       - ${NAVIDROME_HTTP_PORT}:4533
@@ -191,7 +191,7 @@ services:
       - ./navidrome/music:/music:ro
 
   caddy:
-    image: caddy:2.9
+    image: caddy:2.9.1
     restart: unless-stopped
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
