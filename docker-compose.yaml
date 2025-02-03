@@ -18,7 +18,7 @@ services:
       - 8080:8080
 
   vaultwarden:
-    image: vaultwarden/server:1.33.0
+    image: vaultwarden/server:1.33.1
     restart: unless-stopped
     volumes:
       - ./vaultwarden:/data
@@ -46,7 +46,7 @@ services:
       - ${KITCHENOWL_HTTP_PORT}:80
 
   transmission:
-    image: lscr.io/linuxserver/transmission:4.0.6-r1-ls279
+    image: lscr.io/linuxserver/transmission:4.0.6-r2-ls280
     restart: unless-stopped
     ports:
       - ${TRANSMISSION_HTTP_PORT}:9091
