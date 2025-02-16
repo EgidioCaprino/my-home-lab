@@ -1,0 +1,13 @@
+services:
+  server:
+    image: portainer/portainer-ee:2.26.1
+    restart: unless-stopped
+    volumes:
+      - /mnt/usb/egidio/docker/portainer:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
