@@ -1,0 +1,35 @@
+services:
+  redis:
+    image: redis:7.4.2
+    restart: unless-stopped
+    networks:
+      - paperless
+
+  server:
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.14.7
+    restart: unless-stopped
+    depends_on:
+      - redis
+    volumes:
+      - /mnt/usb/egidio/docker/paperless/data:/usr/src/paperless/data
+      - /mnt/usb/egidio/docker/paperless/media:/usr/src/paperless/media
+      - /mnt/usb/egidio/docker/paperless/export:/usr/src/paperless/export
+      - /mnt/usb/egidio/docker/paperless/consume:/usr/src/paperless/consume
+    environment:
+      PAPERLESS_REDIS: redis://paperless-redis-1:6379
+      SERMAP_UID: 1000
+      USERMAP_GID: 1000
+      PAPERLESS_OCR_LANGUAGE: ita
+      PAPERLESS_OCR_LANGUAGES: eng ita
+      PAPERLESS_URL: https://paperless.egidiocaprino.com
+      PAPERLESS_SECRET_KEY: fill-me
+      PAPERLESS_TIME_ZONE: Europe/Amsterdam
+      PAPERLESS_OCR_USER_ARGS: '{ "invalidate_digital_signatures": true }'
+    networks:
+      - web
+      - paperless
+
+networks:
+  web:
+    external: true
+  paperless:
