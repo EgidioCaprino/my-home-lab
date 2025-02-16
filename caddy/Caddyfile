@@ -45,3 +45,9 @@ https://photoprism.egidiocaprino.com {
   reverse_proxy http://photoprism-server-1:2342
   tls /certs/fullchain1.pem /certs/privkey1.pem
 }
+
+https://navidrome.egidiocaprino.com {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy http://navidrome-server-1:4533
+  tls /certs/fullchain1.pem /certs/privkey1.pem
+}

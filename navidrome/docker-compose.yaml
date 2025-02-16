@@ -1,0 +1,19 @@
+services:
+  server:
+    image: deluan/navidrome:0.54.4
+    user: 1000:1000
+    restart: unless-stopped
+    environment:
+      ND_SCANSCHEDULE: 1h
+      ND_LOGLEVEL: info
+      ND_SESSIONTIMEOUT: 24h
+      ND_BASEURL: https://navidrome.egidiocaprino.com
+    volumes:
+      - /mnt/usb/egidio/docker/navidrome/data:/data
+      - /mnt/usb/music:/music:ro
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
