@@ -1,0 +1,15 @@
+services:
+  caddy:
+    image: caddy:2.9.1
+    restart: unless-stopped
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - /etc/letsencrypt/archive/egidiocaprino.com:/certs:ro
+    ports:
+      - '443:443'
+    networks:
+      - web
+
+networks:
+  web:
+    external: true

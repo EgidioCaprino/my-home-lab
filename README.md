@@ -1,0 +1,1 @@
+Create the `web` network manually before running `docker compose` with the command `docker network create web`.
