@@ -3,3 +3,9 @@ https://jellyfin.egidiocaprino.com {
   reverse_proxy http://jellyfin-server-1:8096
   tls /certs/fullchain1.pem /certs/privkey1.pem
 }
+
+https://vaultwarden.egidiocaprino.com {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy http://vaultwarden-server-1
+  tls /certs/fullchain1.pem /certs/privkey1.pem
+}
