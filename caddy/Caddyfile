@@ -39,3 +39,9 @@ https://portainer.egidiocaprino.com {
   reverse_proxy http://portainer-server-1:9000
   tls /certs/fullchain1.pem /certs/privkey1.pem
 }
+
+https://photoprism.egidiocaprino.com {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy http://photoprism-server-1:2342
+  tls /certs/fullchain1.pem /certs/privkey1.pem
+}

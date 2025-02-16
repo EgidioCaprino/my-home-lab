@@ -1,0 +1,50 @@
+services:
+  server:
+    image: photoprism/photoprism:240915
+    restart: unless-stopped
+    stop_grace_period: 10s
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+    environment:
+      PHOTOPRISM_ADMIN_USER: admin
+      PHOTOPRISM_ADMIN_PASSWORD: insecure
+      PHOTOPRISM_AUTH_MODE: password
+      PHOTOPRISM_SITE_URL: https://photoprism.egidiocaprino.com/
+      PHOTOPRISM_DISABLE_TLS: true
+      PHOTOPRISM_DEFAULT_TLS: false
+      PHOTOPRISM_ORIGINALS_LIMIT: 5000
+      PHOTOPRISM_HTTP_COMPRESSION: gzip
+      PHOTOPRISM_LOG_LEVEL: info
+      PHOTOPRISM_READONLY: false
+      PHOTOPRISM_EXPERIMENTAL: false
+      PHOTOPRISM_DISABLE_CHOWN: false
+      PHOTOPRISM_DISABLE_WEBDAV: false
+      PHOTOPRISM_DISABLE_SETTINGS: false
+      PHOTOPRISM_DISABLE_TENSORFLOW: false
+      PHOTOPRISM_DISABLE_FACES: false
+      PHOTOPRISM_DISABLE_CLASSIFICATION: false
+      PHOTOPRISM_DISABLE_VECTORS: false
+      PHOTOPRISM_DISABLE_RAW: false
+      PHOTOPRISM_RAW_PRESETS: false
+      PHOTOPRISM_JPEG_QUALITY: 100
+      PHOTOPRISM_DETECT_NSFW: false
+      PHOTOPRISM_UPLOAD_NSFW: true
+      PHOTOPRISM_DATABASE_DRIVER: sqlite
+      PHOTOPRISM_SITE_CAPTION: AI-Powered Photos App
+      PHOTOPRISM_SITE_DESCRIPTION:
+      PHOTOPRISM_SITE_AUTHOR: Egidio Caprino
+      PHOTOPRISM_UID: 1000
+      PHOTOPRISM_GID: 1000
+    user: 1000:1000
+    working_dir: /photoprism
+    volumes:
+      - /mnt/usb/photoprism/originals:/photoprism/originals
+      - /mnt/usb/photoprism/storage:/photoprism/storage
+      - /mnt/usb/photoprism/import:/photoprism/import
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
