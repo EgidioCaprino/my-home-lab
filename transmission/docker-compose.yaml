@@ -1,0 +1,28 @@
+services:
+  server:
+    image: lscr.io/linuxserver/transmission:4.0.6-r2-ls280
+    restart: unless-stopped
+    ports:
+      - 51413:51413
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+      - USER=home
+      - FILE__PASS=/run/secrets/password-secret.txt
+      - HOST_WHITELIST=transmission.egidiocaprino.com
+    volumes:
+      - /mnt/usb/egidio/docker/transmission/config:/config
+      - /mnt/usb/egidio/docker/transmission/downloads:/downloads
+    secrets:
+      - transmission-password
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
+
+secrets:
+  transmission-password:
+    file: /mnt/usb/egidio/docker/transmission/password-secret.txt
