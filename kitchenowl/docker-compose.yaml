@@ -1,0 +1,28 @@
+services:
+  server:
+    image: tombursch/kitchenowl:v0.6.10
+    restart: unless-stopped
+    environment:
+      - FRONT_URL=https://kitchenowl.egidiocaprino.com
+    volumes:
+      - /mnt/usb/egidio/docker/kitchenowl/data:/data
+    env_file:
+      - /mnt/usb/egidio/docker/kitchenowl/.env
+    networks:
+      - kitchenowl
+
+  web:
+    image: tombursch/kitchenowl-web:v0.6.10
+    restart: unless-stopped
+    environment:
+      - BACK_URL=kitchenowl-server-1:5000
+    depends_on:
+      - server
+    networks:
+      - web
+      - kitchenowl
+
+networks:
+  web:
+    external: true
+  kitchenowl:

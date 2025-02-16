@@ -9,3 +9,9 @@ https://vaultwarden.egidiocaprino.com {
   reverse_proxy http://vaultwarden-server-1
   tls /certs/fullchain1.pem /certs/privkey1.pem
 }
+
+https://kitchenowl.egidiocaprino.com {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy http://kitchenowl-web-1
+  tls /certs/fullchain1.pem /certs/privkey1.pem
+}
