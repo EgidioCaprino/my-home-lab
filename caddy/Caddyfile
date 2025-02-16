@@ -21,3 +21,9 @@ https://transmission.egidiocaprino.com {
   reverse_proxy http://transmission-server-1:9091
   tls /certs/fullchain1.pem /certs/privkey1.pem
 }
+
+https://changedetection.egidiocaprino.com {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy http://changedetection-server-1:5000
+  tls /certs/fullchain1.pem /certs/privkey1.pem
+}
