@@ -1,6 +1,6 @@
 services:
   server:
-    image: jellyfin/jellyfin:10.10.5
+    image: jellyfin/jellyfin:10.10.6
     restart: unless-stopped
     volumes:
       - /mnt/usb/egidio/docker/jellyfin/config:/config
