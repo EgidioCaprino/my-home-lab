@@ -51,3 +51,14 @@ https://navidrome.egidiocaprino.com {
   reverse_proxy http://navidrome-server-1:4533
   tls /certs/fullchain1.pem /certs/privkey1.pem
 }
+
+https://nextcloud.egidiocaprino.com {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy https://nextcloud-server-1 {
+    transport http {
+        tls
+        tls_insecure_skip_verify
+    }
+  }
+  tls /certs/fullchain1.pem /certs/privkey1.pem
+}

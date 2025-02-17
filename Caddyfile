@@ -43,7 +43,7 @@ http://photoprism.egidiocaprino.com {
   reverse_proxy localhost:{env.PHOTOPRISM_HTTP_PORT}
 }
 
-http://navidrome.egidiocaprino.com {
+http://`navidrome`.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy localhost:{env.NAVIDROME_HTTP_PORT}
 }
