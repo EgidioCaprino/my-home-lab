@@ -1,0 +1,7 @@
+[Unit]
+Description=Remount unmounted volumes
+
+[Service]
+Type=simple
+ExecStart=/root/remount.sh
+Restart=no
