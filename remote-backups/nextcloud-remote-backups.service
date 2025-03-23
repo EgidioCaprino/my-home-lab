@@ -1,9 +1,0 @@
-[Unit]
-Description=Sync Nextcloud backups on a remote location
-
-[Service]
-Type=oneshot
-ExecStart=/root/sync-nextcloud-remote-backups.sh
-
-[Install]
-Requires=network.target

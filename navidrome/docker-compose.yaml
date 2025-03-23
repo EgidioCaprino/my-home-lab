@@ -9,8 +9,8 @@ services:
       ND_SESSIONTIMEOUT: 24h
       ND_BASEURL: https://navidrome.egidiocaprino.com
     volumes:
-      - /mnt/usb/egidio/docker/navidrome/data:/data
-      - /mnt/usb/music:/music:ro
+      - ./data:/data
+      - ./music:/music:ro
     networks:
       - web
 

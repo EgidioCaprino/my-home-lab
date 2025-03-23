@@ -5,9 +5,9 @@ services:
     environment:
       - FRONT_URL=https://kitchenowl.egidiocaprino.com
     volumes:
-      - /mnt/usb/egidio/docker/kitchenowl/data:/data
+      - ./data:/data
     env_file:
-      - /mnt/usb/egidio/docker/kitchenowl/.env
+      - ./.env
     networks:
       - kitchenowl
 

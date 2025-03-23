@@ -11,10 +11,10 @@ services:
     depends_on:
       - redis
     volumes:
-      - /mnt/usb/egidio/docker/paperless/data:/usr/src/paperless/data
-      - /mnt/usb/egidio/docker/paperless/media:/usr/src/paperless/media
-      - /mnt/usb/egidio/docker/paperless/export:/usr/src/paperless/export
-      - /mnt/usb/egidio/docker/paperless/consume:/usr/src/paperless/consume
+      - ./data:/usr/src/paperless/data
+      - ./media:/usr/src/paperless/media
+      - ./export:/usr/src/paperless/export
+      - ./consume:/usr/src/paperless/consume
     environment:
       PAPERLESS_REDIS: redis://paperless-redis-1:6379
       SERMAP_UID: 1000

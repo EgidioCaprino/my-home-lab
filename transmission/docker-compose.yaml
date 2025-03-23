@@ -12,8 +12,8 @@ services:
       - FILE__PASS=/run/secrets/password-secret.txt
       - HOST_WHITELIST=transmission.egidiocaprino.com
     volumes:
-      - /mnt/usb/egidio/docker/transmission/config:/config
-      - /mnt/usb/egidio/docker/transmission/downloads:/downloads
+      - ./config:/config
+      - ./downloads:/downloads
     secrets:
       - transmission-password
     networks:
@@ -25,4 +25,4 @@ networks:
 
 secrets:
   transmission-password:
-    file: /mnt/usb/egidio/docker/transmission/password-secret.txt
+    file: ./password-secret.txt

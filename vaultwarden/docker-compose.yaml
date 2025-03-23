@@ -3,7 +3,7 @@ services:
     image: vaultwarden/server:1.33.2
     restart: unless-stopped
     volumes:
-      - /mnt/usb/egidio/docker/vaultwarden:/data
+      - ./data:/data
     networks:
       - web
 

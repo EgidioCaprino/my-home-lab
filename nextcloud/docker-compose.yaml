@@ -1,13 +1,10 @@
-# When updating: https://github.com/docker-library/docs/blob/master/nextcloud/README.md#update-to-a-newer-version
-
 services:
   server:
-    image: lscr.io/linuxserver/nextcloud:30.0.6
+    image: lscr.io/linuxserver/nextcloud:31.0.2
     restart: unless-stopped
-    user: 1000:1000
     volumes:
-      - /mnt/usb/nextcloud/data:/data
-      - /mnt/usb/nextcloud/config:/config
+      - ./data:/data
+      - ./config:/config
     environment:
       - PUID=1000
       - PGID=1000

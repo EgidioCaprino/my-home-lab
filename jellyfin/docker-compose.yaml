@@ -3,9 +3,9 @@ services:
     image: jellyfin/jellyfin:10.10.6
     restart: unless-stopped
     volumes:
-      - /mnt/usb/egidio/docker/jellyfin/config:/config
-      - /mnt/usb/egidio/docker/jellyfin/cache:/cache
-      - /mnt/usb/egidio/docker/transmission/downloads/complete:/downloads:ro
+      - ./config:/config
+      - ./cache:/cache
+      - ./downloads:/downloads:ro
     user: 1000:1000
     environment:
       - JELLYFIN_PublishedServerUrl=https://jellyfin.egidiocaprino.com

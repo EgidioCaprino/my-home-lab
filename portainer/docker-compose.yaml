@@ -3,7 +3,7 @@ services:
     image: portainer/portainer-ee:2.26.1
     restart: unless-stopped
     volumes:
-      - /mnt/usb/egidio/docker/portainer:/data
+      - ./data:/data
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - web

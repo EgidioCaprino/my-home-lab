@@ -1,9 +1,0 @@
-[Unit]
-Description=Create a Paperless backup every day at 00:30 AM
-
-[Timer]
-OnCalendar=Mon..Fri 00:30 Europe/Rome
-Persistent=true
-
-[Install]
-WantedBy=timers.target

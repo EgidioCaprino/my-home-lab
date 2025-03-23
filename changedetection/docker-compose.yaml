@@ -2,7 +2,7 @@ services:
   server:
     image: ghcr.io/dgtlmoon/changedetection.io:0.49.1
     volumes:
-      - /mnt/usb/egidio/docker/changedetection:/datastore
+      - ./datastore:/datastore
     environment:
       - PUID=1000
       - PGID=1000

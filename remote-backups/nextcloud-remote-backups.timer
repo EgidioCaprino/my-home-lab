@@ -1,9 +1,0 @@
-[Unit]
-Description=Sync Nextcloud backups on a remote location daily at 1:00 am
-
-[Timer]
-OnCalendar=Mon..Fri 00:00 Europe/Rome
-Persistent=true
-
-[Install]
-WantedBy=timers.target

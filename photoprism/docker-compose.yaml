@@ -39,9 +39,9 @@ services:
     user: 1000:1000
     working_dir: /photoprism
     volumes:
-      - /mnt/usb/photoprism/originals:/photoprism/originals
-      - /mnt/usb/photoprism/storage:/photoprism/storage
-      - /mnt/usb/photoprism/import:/photoprism/import
+      - ./originals:/photoprism/originals
+      - ./storage:/photoprism/storage
+      - ./import:/photoprism/import
     networks:
       - web
 
