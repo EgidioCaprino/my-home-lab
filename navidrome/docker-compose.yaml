@@ -1,6 +1,6 @@
 services:
   server:
-    image: deluan/navidrome:0.54.4
+    image: deluan/navidrome:latest
     user: 1000:1000
     restart: unless-stopped
     environment:

@@ -1,6 +1,6 @@
 services:
   server:
-    image: portainer/portainer-ee:2.26.1
+    image: portainer/portainer-ee:latest
     restart: unless-stopped
     volumes:
       - ./data:/data

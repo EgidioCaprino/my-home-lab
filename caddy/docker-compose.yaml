@@ -1,6 +1,6 @@
 services:
   caddy:
-    image: caddy:2.9.1
+    image: caddy:latest
     restart: unless-stopped
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
