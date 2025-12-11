@@ -1,12 +1,12 @@
 services:
   redis:
-    image: redis:7.4.2
+    image: redis:latest
     restart: unless-stopped
     networks:
       - paperless
 
   server:
-    image: ghcr.io/paperless-ngx/paperless-ngx:2.14.7
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
     restart: unless-stopped
     depends_on:
       - redis
@@ -19,8 +19,8 @@ services:
       PAPERLESS_REDIS: redis://paperless-redis-1:6379
       SERMAP_UID: 1000
       USERMAP_GID: 1000
-      PAPERLESS_OCR_LANGUAGE: ita
-      PAPERLESS_OCR_LANGUAGES: eng ita
+      PAPERLESS_OCR_LANGUAGE: eng+nld+ita
+      PAPERLESS_OCR_LANGUAGES: eng nld ita
       PAPERLESS_URL: https://paperless.egidiocaprino.com
       PAPERLESS_SECRET_KEY: fill-me
       PAPERLESS_TIME_ZONE: Europe/Amsterdam

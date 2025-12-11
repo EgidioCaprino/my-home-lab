@@ -1,64 +1,59 @@
 https://jellyfin.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy http://jellyfin-server-1:8096
-  tls /certs/fullchain1.pem /certs/privkey1.pem
+  tls /certs/fullchain3.pem /certs/privkey3.pem
 }
 
 https://vaultwarden.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy http://vaultwarden-server-1
-  tls /certs/fullchain1.pem /certs/privkey1.pem
+  tls /certs/fullchain3.pem /certs/privkey3.pem
 }
 
 https://kitchenowl.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy http://kitchenowl-web-1
-  tls /certs/fullchain1.pem /certs/privkey1.pem
+  tls /certs/fullchain3.pem /certs/privkey3.pem
 }
 
 https://transmission.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy http://transmission-server-1:9091
-  tls /certs/fullchain1.pem /certs/privkey1.pem
+  tls /certs/fullchain3.pem /certs/privkey3.pem
 }
 
 https://changedetection.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy http://changedetection-server-1:5000
-  tls /certs/fullchain1.pem /certs/privkey1.pem
+  tls /certs/fullchain3.pem /certs/privkey3.pem
 }
 
 https://paperless.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy http://paperless-server-1:8000
-  tls /certs/fullchain1.pem /certs/privkey1.pem
+  tls /certs/fullchain3.pem /certs/privkey3.pem
 }
 
 https://portainer.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy http://portainer-server-1:9000
-  tls /certs/fullchain1.pem /certs/privkey1.pem
+  tls /certs/fullchain3.pem /certs/privkey3.pem
 }
 
 https://photoprism.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy http://photoprism-server-1:2342
-  tls /certs/fullchain1.pem /certs/privkey1.pem
+  tls /certs/fullchain3.pem /certs/privkey3.pem
 }
 
 https://navidrome.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
   reverse_proxy http://navidrome-server-1:4533
-  tls /certs/fullchain1.pem /certs/privkey1.pem
+  tls /certs/fullchain3.pem /certs/privkey3.pem
 }
 
 https://nextcloud.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
-  reverse_proxy https://nextcloud-server-1 {
-    transport http {
-        tls
-        tls_insecure_skip_verify
-    }
-  }
-  tls /certs/fullchain1.pem /certs/privkey1.pem
+  reverse_proxy http://nextcloud-aio-apache:11000
+  tls /certs/fullchain3.pem /certs/privkey3.pem
 }

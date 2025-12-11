@@ -1,6 +1,6 @@
 services:
   server:
-    image: jellyfin/jellyfin:10.10.6
+    image: jellyfin/jellyfin:latest
     restart: unless-stopped
     volumes:
       - ./config:/config
@@ -11,6 +11,14 @@ services:
       - JELLYFIN_PublishedServerUrl=https://jellyfin.egidiocaprino.com
     networks:
       - web
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+    group_add:
+      - 105
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
 
 networks:
   web:
