@@ -57,3 +57,15 @@ https://nextcloud.egidiocaprino.com {
   reverse_proxy http://nextcloud-aio-apache:11000
   tls /certs/fullchain3.pem /certs/privkey3.pem
 }
+
+https://dns.egidiocaprino.com {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy http://dns-server-1:5380
+  tls /certs/fullchain3.pem /certs/privkey3.pem
+}
+
+https://dns-query.egidiocaprino.com {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy http://dns-server-1
+  tls /certs/fullchain3.pem /certs/privkey3.pem
+}

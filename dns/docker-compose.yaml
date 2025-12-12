@@ -1,0 +1,24 @@
+services:
+  server:
+    image: technitium/dns-server:latest
+    restart: unless-stopped
+    networks:
+      - web
+    ports:
+      - '53:53/udp'
+      - '53:53/tcp'
+      - '853:853/udp'
+      - '853:853/tcp'
+    volumes:
+      - ./data:/etc/dns
+      - /etc/letsencrypt/archive/egidiocaprino.com:/etc/ssl/certs/egidiocaprino.com:ro
+    environment:
+      - DNS_SERVER_DOMAIN=dns.egidiocaprino.com
+      - DNS_SERVER_WEB_SERVICE_ENABLE_HTTPS=false
+      - DNS_SERVER_OPTIONAL_PROTOCOL_DNS_OVER_HTTP=true
+      - DNS_SERVER_RECURSION=Allow
+      - DNS_SERVER_LOG_USING_LOCAL_TIME=true
+
+networks:
+  web:
+    external: true
