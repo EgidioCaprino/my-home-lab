@@ -11,6 +11,7 @@ services:
       - '853:853/tcp'
     volumes:
       - ./data:/etc/dns
+      - ./easylist.txt:/opt/easylist.txt:ro
       - /etc/letsencrypt/archive/egidiocaprino.com:/etc/ssl/certs/egidiocaprino.com:ro
     environment:
       - DNS_SERVER_DOMAIN=dns.egidiocaprino.com
