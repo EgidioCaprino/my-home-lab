@@ -1,0 +1,9 @@
+[Unit]
+Description=Backup home server files to S3 once per day
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target

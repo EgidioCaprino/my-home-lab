@@ -1,0 +1,10 @@
+[Unit]
+Description=Backup home server files in S3
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/bash /root/s3-backup.sh
+
+[Install]
+WantedBy=network-online.target
