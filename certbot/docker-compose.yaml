@@ -1,0 +1,24 @@
+services:
+  renew:
+    image: infinityofspace/certbot_dns_porkbun:latest
+    restart: no
+    command:
+      - certonly
+      - --non-interactive
+      - --agree-tos
+      - --email
+      - egidio.caprino@ik.me
+      - --preferred-challenges
+      - dns
+      - --authenticator
+      - dns-porkbun
+      - --dns-porkbun-credentials
+      - porkbun.ini
+      - --dns-porkbun-propagation-seconds
+      - "60"
+      - --domain
+      - "*.egidiocaprino.com"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/log/letsencrypt:/var/log/letsencrypt
+      - ./porkbun.ini:/porkbun.ini
