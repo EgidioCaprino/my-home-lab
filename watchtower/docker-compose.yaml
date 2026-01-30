@@ -1,7 +1,7 @@
 services:
   watchtower:
     image: containrrr/watchtower:latest
-    restart: unless-stopped
+    restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/localtime:/etc/localtime:ro
