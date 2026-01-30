@@ -4,7 +4,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - /etc/letsencrypt/archive/egidiocaprino.com:/certs:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     ports:
       - '443:443'
     networks:

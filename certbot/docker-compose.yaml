@@ -18,6 +18,8 @@ services:
       - "60"
       - --domain
       - "*.egidiocaprino.com"
+      - --domain
+      - "egidiocaprino.com"
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
       - /var/log/letsencrypt:/var/log/letsencrypt
