@@ -1,6 +1,6 @@
 services:
   website:
-    image: ghcr.io/egidiocaprino/web:latest
+    image: ghcr.io/egidiocaprino/website:latest
     volumes:
       - ./.env.production:/app/.env.production:ro
     networks:
