@@ -1,0 +1,15 @@
+services:
+  wud:
+    image: getwud/wud:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - web
+    environment:
+      - WUD_AUTH_BASIC_EGIDIO_USER=egidio
+      - WUD_AUTH_BASIC_EGIDIO_HASH=fill-me
+      - WUD_TRIGGER_DOCKER_DEFAULT_PRUNE=true
+
+networks:
+  web:
+    external: true

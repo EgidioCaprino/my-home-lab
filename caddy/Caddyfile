@@ -75,3 +75,9 @@ https://egidiocaprino.com, https://www.egidiocaprino.com {
   reverse_proxy http://egidiocaprino-com-website-1:3000
   tls /etc/letsencrypt/live/egidiocaprino.com/fullchain.pem /etc/letsencrypt/live/egidiocaprino.com/privkey.pem
 }
+
+https://wud.egidiocaprino.com {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy http://wud-wud-1:3000
+  tls /etc/letsencrypt/live/egidiocaprino.com/fullchain.pem /etc/letsencrypt/live/egidiocaprino.com/privkey.pem
+}
