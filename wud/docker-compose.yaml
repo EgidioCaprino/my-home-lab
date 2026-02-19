@@ -1,6 +1,7 @@
 services:
   wud:
     image: getwud/wud:latest
+    restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:

@@ -10,7 +10,7 @@ services:
       - USE_X_SETTINGS=1
       - HIDE_REFERER=false
       - FETCH_WORKERS=2
-    restart: unless-stopped
+    restart: always
     networks:
       - web
 

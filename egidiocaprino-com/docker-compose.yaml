@@ -1,6 +1,7 @@
 services:
   website:
     image: ghcr.io/egidiocaprino/website:latest
+    restart: always
     volumes:
       - ./.env.production:/app/.env.production:ro
     networks:
