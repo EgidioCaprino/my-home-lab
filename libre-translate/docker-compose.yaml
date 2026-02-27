@@ -1,0 +1,24 @@
+services:
+  server:
+    environment:
+      - LT_API_KEYS=true
+      - LT_API_KEYS_DB_PATH=/app/db/api_keys.db
+      - LT_UPDATE_MODELS=true
+      - LT_LOAD_ONLY=de,en,it,nl
+    healthcheck:
+      test: [ "CMD-SHELL", "./venv/bin/python scripts/healthcheck.py" ]
+      interval: 10s
+      timeout: 4s
+      retries: 4
+      start_period: 5s
+    image: libretranslate/libretranslate:latest
+    networks:
+      - web
+    pull_policy: always
+    restart: always
+    volumes:
+      - ./db:/app/db:rw
+
+networks:
+  web:
+    external: true
