@@ -1,0 +1,18 @@
+services:
+  server:
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    image: lscr.io/linuxserver/pyload-ng:latest
+    networks:
+      - web
+    pull_policy: always
+    restart: always
+    volumes:
+      - ./config:/config
+      - ./downloads:/downloads
+
+networks:
+  web:
+    external: true
