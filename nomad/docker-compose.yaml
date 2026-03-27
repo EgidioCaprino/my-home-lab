@@ -1,0 +1,17 @@
+services:
+  server:
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    image: mauriceboe/nomad:latest
+    networks:
+      - web
+    pull_policy: always
+    restart: always
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+
+networks:
+  web:
+    external: true
