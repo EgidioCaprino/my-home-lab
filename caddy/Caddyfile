@@ -105,3 +105,9 @@ https://nomad.egidiocaprino.com {
   reverse_proxy http://nomad-server-1:3000
   tls /etc/letsencrypt/live/egidiocaprino.com/fullchain.pem /etc/letsencrypt/live/egidiocaprino.com/privkey.pem
 }
+
+https://grocy.egidiocaprino.com {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy http://grocy-server-1
+  tls /etc/letsencrypt/live/egidiocaprino.com/fullchain.pem /etc/letsencrypt/live/egidiocaprino.com/privkey.pem
+}
