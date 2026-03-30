@@ -1,0 +1,49 @@
+services:
+  guacd:
+    image: guacamole/guacd:latest
+    networks:
+      - guacamole
+    pull_policy: always
+    restart: always
+
+  guacamole:
+    environment:
+      - GUACD_HOSTNAME=guacamole-guacd-1
+      - GUACD_PORT=4822
+      - POSTGRESQL_DATABASE=guacamole
+      - POSTGRESQL_ENABLED=true
+      - POSTGRESQL_HOSTNAME=guacamole-postgres-1
+      - POSTGRESQL_PASSWORD=fill-me
+      - POSTGRESQL_USERNAME=guacamole
+      - REMOTE_IP_VALVE_ENABLED=true
+      - WEBAPP_CONTEXT=ROOT
+    image: guacamole/guacamole:latest
+    networks:
+      - guacamole
+      - web
+    pull_policy: always
+    restart: always
+    volumes:
+      - initdb:/opt/guacamole/extensions/guacamole-auth-jdbc/postgresql/schema:ro
+
+  postgres:
+    environment:
+      - POSTGRES_USER=guacamole
+      - POSTGRES_PASSWORD=fill-me
+    image: postgres:18.2
+    networks:
+      - guacamole
+    pull_policy: always
+    restart: always
+    volumes:
+      - postgres-data:/var/lib/postgresql
+      - initdb:/docker-entrypoint-initdb.d:ro
+
+networks:
+  guacamole:
+  web:
+    external: true
+
+volumes:
+  postgres-data:
+  initdb:

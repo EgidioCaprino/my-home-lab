@@ -111,3 +111,9 @@ https://grocy.egidiocaprino.com {
   reverse_proxy http://grocy-server-1
   tls /etc/letsencrypt/live/egidiocaprino.com/fullchain.pem /etc/letsencrypt/live/egidiocaprino.com/privkey.pem
 }
+
+https://guacamole.egidiocaprino.com {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy http://guacamole-guacamole-1:8080
+  tls /etc/letsencrypt/live/egidiocaprino.com/fullchain.pem /etc/letsencrypt/live/egidiocaprino.com/privkey.pem
+}
