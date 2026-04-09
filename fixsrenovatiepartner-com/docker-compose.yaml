@@ -1,6 +1,6 @@
 services:
   website:
-    image: egidiocaprino/fixsrenovatiepartner.com:0.1.2
+    image: egidiocaprino/fixsrenovatiepartner.com:0.2.0
     networks:
       - web
     restart: always
