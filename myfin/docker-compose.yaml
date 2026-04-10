@@ -1,0 +1,60 @@
+networks:
+  myfin:
+  web:
+    external: true
+
+services:
+  mysql:
+    environment:
+      MYSQL_ROOT_PASSWORD: fill-me
+      MYSQL_DATABASE: myfin
+      MYSQL_USER: myfin
+      MYSQL_PASSWORD: fill-me
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "--silent" ]
+    image: mysql:8
+    networks:
+      - myfin
+    restart: always
+    volumes:
+      - mysql:/var/lib/mysql
+
+  api:
+    depends_on:
+      - mysql
+    environment:
+      DB_NAME: myfin
+      DB_USER: myfin
+      DB_PW: fill-me
+      DB_PORT: 3306
+      DB_HOST: myfin-mysql-1
+      SMTP_HOST: 
+      SMTP_PORT: 
+      SMTP_SECURE: 
+      SMTP_USER: 
+      SMTP_PASSWORD: 
+      SMTP_FROM:
+      PORT: 3001
+      LOGGING: false
+      BYPASS_SESSION_CHECK: false
+      ENABLE_USER_SIGNUP: false
+      TRUST_PROXY: 1
+    image: ghcr.io/afaneca/myfin-api:latest
+    networks:
+      - myfin
+      - web
+    restart: always
+
+  frontend:
+    environment:
+      - VITE_MYFIN_BASE_API_URL=https://myfin-api.egidiocaprino.com
+    depends_on:
+      - api
+    image: ghcr.io/afaneca/myfin:latest
+    networks:
+      - myfin
+      - web
+    restart: always
+
+volumes:
+  mysql:

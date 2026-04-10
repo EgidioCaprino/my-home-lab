@@ -1,3 +1,7 @@
+networks:
+  web:
+    external: true
+
 services:
   caddy:
     healthcheck:
@@ -11,12 +15,7 @@ services:
       - web
     ports:
       - "443:443"
-    pull_policy: always
     restart: always
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
-
-networks:
-  web:
-    external: true
