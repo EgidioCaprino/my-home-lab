@@ -1,0 +1,18 @@
+networks:
+  web:
+    external: true
+
+services:
+  sync-server:
+    environment:
+      DASHBOARD_ENABLED: false
+      BACKUP_ENABLED: false
+      METRICS_ENABLED: false
+      SYNC_USER1: "egidio:fill-me"
+      TZ: Europe/Amsterdam
+    image: chrislongros/anki-sync-server-enhanced:latest
+    networks:
+      - web
+    restart: always
+    volumes:
+      - ./data:/data:rw

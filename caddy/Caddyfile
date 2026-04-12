@@ -135,3 +135,9 @@ https://myfin-api.egidiocaprino.com {
   reverse_proxy http://myfin-api-1:3001
   tls /etc/letsencrypt/live/egidiocaprino.com/fullchain.pem /etc/letsencrypt/live/egidiocaprino.com/privkey.pem
 }
+
+https://anki.egidiocaprino.com {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy http://anki-sync-server-1:8080
+  tls /etc/letsencrypt/live/egidiocaprino.com/fullchain.pem /etc/letsencrypt/live/egidiocaprino.com/privkey.pem
+}
