@@ -3,8 +3,9 @@ services:
     environment:
       - LT_API_KEYS=true
       - LT_API_KEYS_DB_PATH=/app/db/api_keys.db
-      - LT_UPDATE_MODELS=true
+      - LT_FRONTEND_TIMEOUT= 5000
       - LT_LOAD_ONLY=de,en,it,nl
+      - LT_UPDATE_MODELS=true
     healthcheck:
       test: [ "CMD-SHELL", "./venv/bin/python scripts/healthcheck.py" ]
       interval: 10s
@@ -14,7 +15,6 @@ services:
     image: libretranslate/libretranslate:latest
     networks:
       - web
-    pull_policy: always
     restart: always
     volumes:
       - ./db:/app/db:rw
