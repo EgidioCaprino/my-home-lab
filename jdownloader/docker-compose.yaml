@@ -5,6 +5,7 @@ networks:
 services:
   server:
     environment:
+      JDOWNLOADER_HEADLESS: "1"
       TZ: Europe/Amsterdam
       WEB_AUDIO: "1"
     image: jlesage/jdownloader-2:latest

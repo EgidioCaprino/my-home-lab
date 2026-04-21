@@ -118,11 +118,11 @@ https://guacamole.egidiocaprino.com {
   tls /etc/letsencrypt/live/egidiocaprino.com/fullchain.pem /etc/letsencrypt/live/egidiocaprino.com/privkey.pem
 }
 
-https://fixsrenovatiepartner.com, https://www.fixsrenovatiepartner.com {
-  header Strict-Transport-Security max-age=31536000;
-  reverse_proxy http://fixsrenovatiepartner-com-website-1:3000
-  tls /etc/letsencrypt/live/fixsrenovatiepartner.com/fullchain.pem /etc/letsencrypt/live/fixsrenovatiepartner.com/privkey.pem
-}
+#https://fixsrenovatiepartner.com, https://www.fixsrenovatiepartner.com {
+#  header Strict-Transport-Security max-age=31536000;
+#  reverse_proxy http://fixsrenovatiepartner-com-website-1:3000
+#  tls /etc/letsencrypt/live/fixsrenovatiepartner.com/fullchain.pem /etc/letsencrypt/live/fixsrenovatiepartner.com/privkey.pem
+#}
 
 https://myfin.egidiocaprino.com {
   header Strict-Transport-Security max-age=31536000;
