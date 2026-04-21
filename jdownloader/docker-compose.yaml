@@ -1,0 +1,16 @@
+networks:
+  web:
+    external: true
+
+services:
+  server:
+    environment:
+      TZ: Europe/Amsterdam
+      WEB_AUDIO: "1"
+    image: jlesage/jdownloader-2:latest
+    networks:
+      - web
+    restart: always
+    volumes:
+      - ./config:/config:rw
+      - ./downloads:/output:rw

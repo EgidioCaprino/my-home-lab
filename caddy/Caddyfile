@@ -141,3 +141,13 @@ https://anki.egidiocaprino.com {
   reverse_proxy http://anki-sync-server-1:8080
   tls /etc/letsencrypt/live/egidiocaprino.com/fullchain.pem /etc/letsencrypt/live/egidiocaprino.com/privkey.pem
 }
+
+https://jdownloader.egidiocaprino.com {
+  header Strict-Transport-Security max-age=31536000;
+  reverse_proxy http://jdownloader-server-1:5800
+  tls /etc/letsencrypt/live/egidiocaprino.com/fullchain.pem /etc/letsencrypt/live/egidiocaprino.com/privkey.pem
+
+  basicauth * {
+    egidio $2b$12$HKMuOtHeL9NbxduMRXDLbuuyQDtQuEJA0/0EH7IDA64HGbjpQYPYm
+  }
+}
